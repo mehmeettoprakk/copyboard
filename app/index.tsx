@@ -61,20 +61,20 @@ export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1 bg-black" edges={['top', 'bottom']}>
       <View className="flex-1 px-4">
-        <View className="mb-5 mt-2 flex-row items-start">
+        <View className="mb-3 mt-1 flex-row items-start">
           <View className="w-1/3 items-start">
             <Pressable
               onPress={() => void handleQuickSave()}
               hitSlop={10}
-              className="h-11 justify-center rounded-full border border-white/15 bg-white/10 px-4"
+              className="h-9 justify-center rounded-full border border-white/15 bg-white/10 px-3"
             >
-              <Text className="text-base font-bold text-white">+ Kaydet</Text>
+              <Text className="text-sm font-bold text-white">+ Kaydet</Text>
             </Pressable>
           </View>
 
           <View className="w-1/3 items-center pt-0.5">
-            <Text className="text-[30px] font-extrabold leading-8 text-white">Pano</Text>
-            <Text className="text-xs font-semibold uppercase tracking-widest text-white/50">
+            <Text className="text-[22px] font-extrabold leading-6 text-white">Pano</Text>
+            <Text className="text-[10px] font-semibold uppercase tracking-[1px] text-white/50">
               {items.length} kayit
             </Text>
           </View>
@@ -83,9 +83,9 @@ export default function HomeScreen() {
             <Pressable
               onPress={handleOpenMenu}
               hitSlop={10}
-              className="h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10"
+              className="h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10"
             >
-              <Text className="text-2xl leading-6 text-white">•••</Text>
+              <Text className="text-xl leading-5 text-white">•••</Text>
             </Pressable>
           </View>
         </View>
@@ -122,7 +122,7 @@ export default function HomeScreen() {
               />
             </View>
           )}
-          contentContainerStyle={{ paddingBottom: 96 }}
+          contentContainerStyle={{ paddingBottom: 92 }}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => (
             <View className="mt-20 items-center rounded-3xl border border-dashed border-white/20 bg-white/5 px-6 py-10">

@@ -27,11 +27,11 @@ const formatDate = (isoDate: string) => {
 const CARD_COLORS = ['#4b55a1', '#b63f2c', '#1c6cc2', '#cd8300', '#8f49bd', '#26a647'];
 
 const Card = ({ item, index, copied, onCopy, onDelete, onEdit }: Props) => {
-  const preview = item.content.length > 120 ? `${item.content.slice(0, 120)}...` : item.content;
+  const preview = item.content.length > 88 ? `${item.content.slice(0, 88)}...` : item.content;
   const bgColor = CARD_COLORS[index % CARD_COLORS.length];
 
   return (
-    <Animated.View entering={FadeInDown.duration(180)} className="mb-3 flex-1">
+    <Animated.View entering={FadeInDown.duration(180)} className="mb-2.5 flex-1">
       <Swipeable
         renderRightActions={() => (
           <RectButton
@@ -51,32 +51,32 @@ const Card = ({ item, index, copied, onCopy, onDelete, onEdit }: Props) => {
         <Pressable
           onPress={onCopy}
           style={{ backgroundColor: bgColor, opacity: copied ? 0.84 : 1 }}
-          className="min-h-44 rounded-3xl px-4 py-4"
+          className="min-h-36 rounded-3xl px-3 py-3"
         >
-          <View className="mb-3 flex-row items-start justify-between">
-            <Text className="mr-2 flex-1 text-[34px] leading-none text-white/90">+</Text>
-            <Pressable onPress={onEdit} hitSlop={10} className="rounded-full bg-black/20 px-3 py-1">
-              <Text className="text-[11px] font-bold uppercase tracking-wide text-white">Duzenle</Text>
+          <View className="mb-2 flex-row items-start justify-between">
+            <Text className="mr-2 flex-1 text-[24px] leading-none text-white/90">+</Text>
+            <Pressable onPress={onEdit} hitSlop={10} className="rounded-full bg-black/20 px-2.5 py-1">
+              <Text className="text-[10px] font-bold uppercase tracking-wide text-white">Duzenle</Text>
             </Pressable>
           </View>
 
-          <Text className="mb-2 text-[33px] font-extrabold leading-none text-white">~</Text>
+          <Text className="mb-1 text-[24px] font-extrabold leading-none text-white">~</Text>
 
           <View className="mt-auto">
-            <Text className="text-xl font-extrabold text-white" numberOfLines={1}>
+            <Text className="text-[18px] font-extrabold text-white" numberOfLines={1}>
               {item.title}
             </Text>
-            <Text className="mt-2 text-[17px] leading-6 text-white/95" numberOfLines={3}>
+            <Text className="mt-1.5 text-[14px] leading-5 text-white/95" numberOfLines={3}>
               {preview}
             </Text>
-            <View className="mt-3 flex-row items-center justify-between">
-              <Text className="text-xs font-semibold text-white/90">{formatDate(item.createdAt)}</Text>
+            <View className="mt-2.5 flex-row items-center justify-between">
+              <Text className="text-[11px] font-semibold text-white/90">{formatDate(item.createdAt)}</Text>
               {copied ? (
-                <Text className="text-xs font-bold uppercase tracking-wide text-white">Kopyalandi</Text>
+                <Text className="text-[10px] font-bold uppercase tracking-wide text-white">Kopyalandi</Text>
               ) : null}
             </View>
           </View>
-          </Pressable>
+        </Pressable>
       </Swipeable>
     </Animated.View>
   );

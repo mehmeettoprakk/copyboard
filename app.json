@@ -3,6 +3,7 @@
     "name": "copyboard",
     "slug": "copyboard",
     "version": "1.0.0",
+    "scheme": "copyboard",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",

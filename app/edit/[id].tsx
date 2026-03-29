@@ -1,7 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Alert, Pressable, Text, TextInput, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useClipboard } from '../../src/context/ClipboardContext';
@@ -51,70 +50,66 @@ export default function EditItemScreen() {
 
   if (loading) {
     return (
-      <LinearGradient colors={['#e0f2fe', '#eef2ff', '#f8fafc']} style={{ flex: 1 }}>
-        <View className="flex-1 items-center justify-center dark:bg-slate-950">
-          <Text className="text-slate-500 dark:text-slate-300">Yukleniyor...</Text>
-        </View>
-      </LinearGradient>
+      <View className="flex-1 items-center justify-center bg-black">
+        <Text className="text-white/70">Yukleniyor...</Text>
+      </View>
     );
   }
 
   return (
-    <LinearGradient colors={['#ecfeff', '#eff6ff', '#f8fafc']} style={{ flex: 1 }}>
-      <SafeAreaView className="flex-1 px-4 py-3" edges={['bottom']}>
-        <View className="mb-4 rounded-3xl border border-cyan-100/80 bg-white/80 p-4 dark:border-slate-700 dark:bg-slate-900/80">
-          <Text className="text-xs font-bold uppercase tracking-[2px] text-cyan-700 dark:text-cyan-400">
-            Kayit Duzenleme
-          </Text>
-          <Text className="mt-1 text-2xl font-black text-slate-900 dark:text-slate-100">
-            Isim ve icerik guncelle
-          </Text>
-        </View>
-
-        <View className="rounded-3xl border border-slate-200/80 bg-white/90 p-4 dark:border-slate-700 dark:bg-slate-900/80">
-          <Text className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Isim
-          </Text>
-          <TextInput
-            value={title}
-            onChangeText={setTitle}
-            placeholder="Kayit ismi"
-            placeholderTextColor="#94a3b8"
-            className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base font-semibold text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-          />
-
-          <Text className="mb-2 mt-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Icerik
-          </Text>
-          <TextInput
-            multiline
-            value={content}
-            onChangeText={setContent}
-            placeholder="Metin..."
-            placeholderTextColor="#94a3b8"
-            textAlignVertical="top"
-            className="min-h-56 rounded-2xl border border-slate-200 bg-white p-4 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-          />
-
-          <Text className="mt-2 text-right text-xs text-slate-400 dark:text-slate-500">
-            {content.length} karakter
-          </Text>
-        </View>
-
-        <View className="mt-5 flex-row gap-3">
+    <SafeAreaView className="flex-1 bg-black px-4 py-2" edges={['top', 'bottom']}>
+      <View className="mb-3 mt-1 flex-row items-start">
+        <View className="w-1/3 items-start">
           <Pressable
             onPress={() => router.back()}
-            className="flex-1 rounded-2xl border border-slate-300 bg-white py-3 dark:border-slate-700 dark:bg-slate-900"
+            hitSlop={10}
+            className="h-9 justify-center rounded-full border border-white/15 bg-white/10 px-3"
           >
-            <Text className="text-center text-base font-bold text-slate-700 dark:text-slate-200">
-              Vazgec
-            </Text>
-          </Pressable>
-          <Pressable onPress={() => void handleSave()} className="flex-1 rounded-2xl bg-cyan-500 py-3">
-            <Text className="text-center text-base font-bold text-white">Kaydet</Text>
+            <Text className="text-sm font-bold text-white">Geri</Text>
           </Pressable>
         </View>
-      </SafeAreaView>
-    </LinearGradient>
+
+        <View className="w-1/3 items-center pt-0.5">
+          <Text className="text-[22px] font-extrabold leading-6 text-white">Duzenle</Text>
+          <Text className="text-[10px] font-semibold uppercase tracking-[1px] text-white/50">
+            kayit
+          </Text>
+        </View>
+
+        <View className="w-1/3 items-end">
+          <Pressable
+            onPress={() => void handleSave()}
+            hitSlop={10}
+            className="h-9 justify-center rounded-full border border-cyan-500/40 bg-cyan-500 px-3"
+          >
+            <Text className="text-sm font-bold text-white">Kaydet</Text>
+          </Pressable>
+        </View>
+      </View>
+
+      <View className="rounded-3xl border border-white/10 bg-white/5 p-3">
+        <Text className="mb-1 text-[10px] font-bold uppercase tracking-[1px] text-white/50">Isim</Text>
+        <TextInput
+          value={title}
+          onChangeText={setTitle}
+          placeholder="Kayit ismi"
+          placeholderTextColor="#9ca3af"
+          className="rounded-2xl border border-white/10 bg-black/25 px-3 py-2.5 text-sm font-semibold text-white"
+        />
+
+        <Text className="mb-1 mt-3 text-[10px] font-bold uppercase tracking-[1px] text-white/50">Icerik</Text>
+        <TextInput
+          multiline
+          value={content}
+          onChangeText={setContent}
+          placeholder="Metin..."
+          placeholderTextColor="#9ca3af"
+          textAlignVertical="top"
+          className="min-h-48 rounded-2xl border border-white/10 bg-black/25 p-3 text-sm leading-5 text-white"
+        />
+
+        <Text className="mt-2 text-right text-[10px] text-white/40">{content.length} karakter</Text>
+      </View>
+    </SafeAreaView>
   );
 }
